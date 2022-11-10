@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+#TODO regex email and password validations
 RSpec.describe User, type: :model do
   let!(:user) { create(:user) }
   it "is valid with valid attributes" do
