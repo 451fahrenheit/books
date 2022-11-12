@@ -5,23 +5,20 @@ module Mutations
         end
         argument :auth_provider, AuthProviderSignupData, required: false
 
-        field :success, Boolean, null: true
         field :user, Types::UserType, null: true
 
         def resolve(auth_provider: nil)
             user = User.find_by email: auth_provider&.[](:credentials)&.[](:email)
-            if(user)
-                {success:false}
-            else
-                user = User.new(
+            unless(user)
+                user = User.create!(
                     email: auth_provider&.[](:credentials)&.[](:email),
                     password: auth_provider&.[](:credentials)&.[](:password)
                  )
-                user.save
-                {user: user, success: true}
-             
+                {user: user}
+                
+            else
+                GraphQL::ExecutionError.new('Account already exists with this email.')
             end
-
         end
     end
 end
