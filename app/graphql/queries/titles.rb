@@ -26,7 +26,8 @@ module Queries
           book_hash["thumbnail"]=book&.[]("volumeInfo")&.[]("imageLinks")&.[]("thumbnail")
           
           books_hash.push(book_hash) 
-        end                   
+        end   
+        books_hash
       else
         return GraphQL::ExecutionError.new('Enter text to search.')
       end              
