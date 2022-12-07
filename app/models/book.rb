@@ -1,5 +1,6 @@
 class Book < ApplicationRecord
   validates :volumeId, presence: true
+  belongs_to :user
 
   def serialize_authors(authors)
     serialized_authors = authors.join(',')
