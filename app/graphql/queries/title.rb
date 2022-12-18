@@ -24,7 +24,7 @@ module Queries
         book_hash["smallthumbnail"]=book&.[]("volumeInfo")&.[]("imageLinks")&.[]("smallThumbnail")
         book_hash["thumbnail"]=book&.[]("volumeInfo")&.[]("imageLinks")&.[]("thumbnail")                    
         book_hash
-        # puts book_hash 
+
       else
         return GraphQL::ExecutionError.new('Selected volume does not exist.')
       end              

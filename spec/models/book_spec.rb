@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
-  let!(:book) { create(:book) }
+
   it "thows error when volumeId is nil" do
     book=Book.new
     book.volumeId=""
