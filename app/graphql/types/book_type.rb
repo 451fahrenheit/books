@@ -10,6 +10,7 @@ module Types
     field :smallthumbnail, String, null: false
     field :thumbnail, String, null: false
     field :user_id, String, null: false
+    field :is_public, Boolean, null: false
   end
 
 end

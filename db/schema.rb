@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_06_120813) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_21_191514) do
   create_table "books", force: :cascade do |t|
     t.string "volumeId"
     t.string "title"
@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_120813) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.boolean "is_public"
   end
 
   create_table "users", force: :cascade do |t|
