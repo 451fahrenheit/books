@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 module Queries
   RSpec.describe 'SearchTitleWithvolumeid', type: :request do
 

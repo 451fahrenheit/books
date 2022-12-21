@@ -4,7 +4,8 @@ module Types
     field :volumeId, String, null: false
     field :title, String, null: false
     field :subtitle, String, null: false
-    field :authors, String, null: false
+    field :description, String, null: true
+    field :authors, [String], null: false
     field :language, String, null: false
     field :pubDate, String, null: false
     field :smallthumbnail, String, null: false
