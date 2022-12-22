@@ -7,6 +7,9 @@ module Mutations
 
     def resolve(add_book: nil)
       user = context[:current_user]
+      unless user
+        return GraphQL::ExecutionError.new('Unauthorized')
+      end
       book = Book.find_by(volumeId: add_book&.[](:volumeId), user_id: user.id)
 
       unless(book)

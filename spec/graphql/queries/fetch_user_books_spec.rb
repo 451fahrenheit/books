@@ -73,7 +73,7 @@ module Queries
    
       expect((jsonResponse["data"]["getBooks"]).count).to eq(0)
     end
-    it "returns User library is empty when no books are found" do
+    it "returns Unauthorized when user is not signed in" do
       user=User.create!(email: "cultsharing@email.com", password: "12345678")
 
 
