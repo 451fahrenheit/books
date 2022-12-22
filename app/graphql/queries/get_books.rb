@@ -5,7 +5,13 @@ module Queries
 
     def resolve
       user = context[:current_user]
+
       bookDTO=[]
+
+      unless user
+        return GraphQL::ExecutionError.new('Unauthorized')
+      end
+      
       books = Book.where(user_id: user.id)
 
       if(books.count>0)
@@ -26,6 +32,7 @@ module Queries
           bookDTO << each_book
       
         end
+      end
       bookDTO
     end
   end

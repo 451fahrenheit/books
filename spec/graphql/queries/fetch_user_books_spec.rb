@@ -73,6 +73,15 @@ module Queries
    
       expect((jsonResponse["data"]["getBooks"]).count).to eq(0)
     end
+    it "returns User library is empty when no books are found" do
+      user=User.create!(email: "cultsharing@email.com", password: "12345678")
+
+
+      post '/graphql', params: { query: fetch_user_books }
+      jsonResponse = JSON.parse(response.body)
+   
+      expect(jsonResponse["errors"].first["message"]).to eq("Unauthorized")
+    end
     def signin_query
       <<-GRAPHQL
 			mutation LoginUser($email: String!, $password: String!) {
