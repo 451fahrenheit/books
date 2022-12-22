@@ -33,6 +33,7 @@ module Queries
       jsonResponse = JSON.parse(response.body)
       expect((jsonResponse["data"]["getBooks"]).count).to eq(2)
     end
+    
     it "fetches all the books belonging to the user" do
       user=User.create!(email: "cultsharing@email.com", password: "12345678")
       user1=User.create!(email: "user1@email.com", password: "12345678")
@@ -64,6 +65,7 @@ module Queries
       jsonResponse = JSON.parse(response.body)
       expect((jsonResponse["data"]["getBooks"]).count).to eq(1)
     end
+
     it "returns User library is empty when no books are found" do
       user=User.create!(email: "cultsharing@email.com", password: "12345678")
 
@@ -73,6 +75,7 @@ module Queries
    
       expect((jsonResponse["data"]["getBooks"]).count).to eq(0)
     end
+
     it "returns Unauthorized when user is not signed in" do
       user=User.create!(email: "cultsharing@email.com", password: "12345678")
 
@@ -82,6 +85,7 @@ module Queries
    
       expect(jsonResponse["errors"].first["message"]).to eq("Unauthorized")
     end
+
     def signin_query
       <<-GRAPHQL
 			mutation LoginUser($email: String!, $password: String!) {
