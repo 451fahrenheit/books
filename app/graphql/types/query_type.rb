@@ -12,10 +12,21 @@ module Types
 
     field :test_field, [String], null: false,
       description: "An example field added by the generator"
-      
+
+    field :get_user_book_with_title, resolver: Queries::GetUserBookWithTitle,
+      description: "Searches and fetches a title"  
+    
+    field :get_user_book_with_id, resolver: Queries::GetUserBookWithId,
+      description: "fetches a title by id"
+
     def test_field
       ["Hello World!", "Bolo"]
     end
+
+    # def get_user_book_with_id
+    #   ["Hello"]
+    # end
+
 
 
 
