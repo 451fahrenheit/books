@@ -25,9 +25,8 @@ class GraphqlController < ApplicationController
   def current_user
     if session[:token]
       token = session[:token]
-    else
-      token = request.headers['authorization'].split(' ').last
-
+    elsif request.headers['authorization']
+      token = request.headers['authorization']&.split(' ').last
     end
 
     return unless token

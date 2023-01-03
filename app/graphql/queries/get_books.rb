@@ -5,7 +5,6 @@ module Queries
 
     def resolve
       user = context[:current_user]
-
       bookDTO=[]
 
       unless user
@@ -29,6 +28,8 @@ module Queries
           each_book['smallthumbnail'] = book.smallthumbnail
           each_book['user_id'] = book.user_id
           each_book['authors'] = Book.new.deserialize_authors(book.authors)
+          each_book['is_public'] = book.is_public
+          
           bookDTO << each_book
       
         end
