@@ -22,6 +22,9 @@ module Types
     field :search_users_with_email, resolver: Queries::SearchUsersWithEmail,
       description: "fetches users by email"
 
+    field :fetch_pending_friend_requests, resolver: Queries::FetchPendingFriendRequests,
+      description: "fetches pending requests from users"
+
     def test_field
       ["Hello World!", "Bolo"]
     end
