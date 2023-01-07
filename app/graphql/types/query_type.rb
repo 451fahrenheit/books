@@ -25,6 +25,9 @@ module Types
     field :fetch_pending_friend_requests, resolver: Queries::FetchPendingFriendRequests,
       description: "fetches pending requests from users"
 
+    field :fetch_friends, resolver: Queries::FetchFriends,
+      description: "fetches friends"
+
     def test_field
       ["Hello World!", "Bolo"]
     end

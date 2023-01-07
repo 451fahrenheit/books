@@ -1,21 +1,22 @@
 require 'rails_helper'
 module Queries
-  RSpec.describe 'FetchPendingFriendRequests', type: :request do
+  RSpec.describe 'FetchFriends', type: :request do
 
-    it "Fetches users whose requests are pending" do
+    it "Fetches users who are friends" do
       
       search_text = "hello"
       user=User.create!(email: "cultsharing@email.com", password: "12345678")
       user1=User.create!(email: "hello@email.com", password: "12345678")
       friendshp = Friendship.create!(
         sent_by_id: user.id,
-        sent_to_id: user.id
+        sent_to_id: user.id,
+        status: true
       )
       post '/graphql', params: { query: signin_query, variables: {email: "cultsharing@email.com",password: "12345678"} }
-      post '/graphql', params: { query: fetch_pending_friend_requests}
+      post '/graphql', params: { query: fetch_friends}
       jsonResponse = JSON.parse(response.body)
 
-      expect((jsonResponse["data"]["fetchPendingFriendRequests"]).count).to eq(1)
+      expect((jsonResponse["data"]["fetchFriends"]).count).to eq(1)
 
     end
 
@@ -23,7 +24,7 @@ module Queries
       
       user=User.create!(email: "cultsharing@email.com", password: "12345678")
       
-      post '/graphql', params: { query: fetch_pending_friend_requests, variables: {search_email: 'alp'} }
+      post '/graphql', params: { query: fetch_friends, variables: {search_email: 'alp'} }
       jsonResponse = JSON.parse(response.body)
 
       expect(jsonResponse["errors"].first["message"]).to eq('Unauthorized')
@@ -41,10 +42,10 @@ module Queries
       GRAPHQL
     end
   
-    def fetch_pending_friend_requests
+    def fetch_friends
       <<-GRAPHQL
-      query FetchPendingFriendRequests{
-        fetchPendingFriendRequests{
+      query FetchFriends{
+        fetchFriends{
         id,
           email
         }
