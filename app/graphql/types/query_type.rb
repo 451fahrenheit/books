@@ -19,6 +19,9 @@ module Types
     field :get_user_book_with_id, resolver: Queries::GetUserBookWithId,
       description: "fetches a title by id"
 
+    field :search_users_with_email, resolver: Queries::SearchUsersWithEmail,
+      description: "fetches users by email"
+
     def test_field
       ["Hello World!", "Bolo"]
     end

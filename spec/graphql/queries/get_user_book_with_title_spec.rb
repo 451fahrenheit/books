@@ -34,9 +34,8 @@ module Queries
       
       jsonResponse = JSON.parse(response.body)
       expect((jsonResponse["data"]["getUserBookWithTitle"]).count).to eq(1)
-
-
     end
+
     it "returns unauthotized when the user is not signed in" do
       user=User.create!(email: "cultsharing@email.com", password: "12345678")
       Book.create!(volumeId:"goodbook0",
@@ -67,7 +66,6 @@ module Queries
       post '/graphql', params: { query: get_user_book_with_title, variables: {title: "title"} }
       jsonResponse = JSON.parse(response.body)
       expect(jsonResponse["errors"].first["message"]).to eq('Unauthorized')
-
 
     end
     it "returns zero found when the book is not available" do
