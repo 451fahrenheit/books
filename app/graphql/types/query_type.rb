@@ -19,6 +19,21 @@ module Types
     field :get_user_book_with_id, resolver: Queries::GetUserBookWithId,
       description: "fetches a title by id"
 
+    field :search_users_with_email, resolver: Queries::SearchUsersWithEmail,
+      description: "fetches users by email"
+
+    field :fetch_pending_friend_requests, resolver: Queries::FetchPendingFriendRequests,
+      description: "fetches pending requests from users"
+
+    field :fetch_friends, resolver: Queries::FetchFriends,
+      description: "fetches friends"
+
+    field :search_friend, resolver: Queries::SearchFriend,
+      description: "fetches friends"
+
+    field :fetch_any_user_books, resolver: Queries::FetchAnyUserBooks,
+      description: "fetches friends"
+
     def test_field
       ["Hello World!", "Bolo"]
     end
