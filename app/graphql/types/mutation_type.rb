@@ -7,6 +7,8 @@ module Types
     field :update_book, mutation: Mutations::UpdateBook
     field :add_friend, mutation: Mutations::AddFriend
     field :update_friend, mutation: Mutations::UpdateFriend
+    field :request_book, mutation: Mutations::RequestBook
+    field :approve_book_request, mutation: Mutations::ApproveBookRequest
     field :test_field, String, null: false,
     
       description: "An example field added by the generator"

@@ -11,7 +11,7 @@ module Queries
       end
 
       userResponse = []
-      users = User.find(user.id).pending_requests
+      users = User.find(user.id).received_requests
 
       unless users.count>0
         return GraphQL::ExecutionError.new('Currently user does not have any requests')
