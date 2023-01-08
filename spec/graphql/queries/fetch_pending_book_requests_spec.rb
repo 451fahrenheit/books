@@ -31,7 +31,6 @@ module Queries
       post '/graphql', params: { query: signin_query, variables: {email: "cultsharing@email.com",password: "12345678"} }
       post '/graphql', params: { query: fetch_pending_book_requests}
       jsonResponse = JSON.parse(response.body)
-      puts jsonResponse
 
       expect((jsonResponse["data"]["fetchPendingBookRequests"]).count).to eq(1)
 
