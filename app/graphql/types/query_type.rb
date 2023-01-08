@@ -29,10 +29,13 @@ module Types
       description: "fetches friends"
 
     field :search_friend, resolver: Queries::SearchFriend,
-      description: "fetches friends"
+      description: "searches friends"
 
     field :fetch_any_user_books, resolver: Queries::FetchAnyUserBooks,
-      description: "fetches friends"
+      description: "fetches user books"
+
+    field :fetch_pending_book_requests, resolver: Queries::FetchPendingBookRequests,
+      description: "fetches user books"
 
     def test_field
       ["Hello World!", "Bolo"]
