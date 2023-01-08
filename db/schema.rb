@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_03_173432) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_08_124211) do
+  create_table "book_requests", force: :cascade do |t|
+    t.integer "sent_to_id", null: false
+    t.integer "sent_by_id", null: false
+    t.integer "sent_for_id", null: false
+    t.boolean "status", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sent_by_id"], name: "index_book_requests_on_sent_by_id"
+    t.index ["sent_for_id"], name: "index_book_requests_on_sent_for_id"
+    t.index ["sent_to_id"], name: "index_book_requests_on_sent_to_id"
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "volumeId"
     t.string "title"
@@ -44,6 +56,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_173432) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "book_requests", "books", column: "sent_for_id"
+  add_foreign_key "book_requests", "users", column: "sent_by_id"
+  add_foreign_key "book_requests", "users", column: "sent_to_id"
   add_foreign_key "friendships", "users", column: "sent_by_id"
   add_foreign_key "friendships", "users", column: "sent_to_id"
 end

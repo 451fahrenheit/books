@@ -1,6 +1,10 @@
 class Book < ApplicationRecord
   validates :volumeId, presence: true
   belongs_to :user
+  has_many :book_sent, class_name: 'BookRequest',
+  foreign_key: 'sent_for_id',
+  inverse_of: 'sent_by',
+  dependent: :destroy
 
   def serialize_authors(authors)
     serialized_authors = authors.join(',')
