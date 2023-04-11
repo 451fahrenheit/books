@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_08_124211) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_11_045928) do
   create_table "book_requests", force: :cascade do |t|
     t.integer "sent_to_id", null: false
     t.integer "sent_by_id", null: false
@@ -35,7 +35,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_08_124211) do
     t.string "thumbnail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
     t.boolean "is_public"
   end
 
@@ -47,6 +46,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_08_124211) do
     t.datetime "updated_at", null: false
     t.index ["sent_by_id"], name: "index_friendships_on_sent_by_id"
     t.index ["sent_to_id"], name: "index_friendships_on_sent_to_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.string "subtitle"
+    t.string "excerpt"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
