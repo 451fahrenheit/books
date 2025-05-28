@@ -7,3 +7,5 @@ Clone
 bundle install
 
 rails s
+
+rspec
